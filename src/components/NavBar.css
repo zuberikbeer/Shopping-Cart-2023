@@ -1,0 +1,8 @@
+.NavBar .profile {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.NavBar .Image {
+  justify-content: flex-end;
+}
