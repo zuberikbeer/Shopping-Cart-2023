@@ -51,7 +51,6 @@ export default function Home() {
                 <Carousel.Caption style={{ height: "50%" }}>
                   <h3>Groceries</h3>
                   <p>
-                    {" "}
                     Meal prep and find quality food products. All our groceries
                     are sourced from local distributors within the U.S.
                   </p>
