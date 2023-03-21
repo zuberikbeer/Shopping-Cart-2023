@@ -1,0 +1,36 @@
+.top-row {
+  height: 500px;
+  background-color: rgba(111, 111, 111, 0.304);
+}
+
+.carousel {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-item {
+  height: 500px;
+  margin-top: 10px;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.middle-row {
+  background-color: rgba(111, 111, 111, 0.304);
+  background-blend-mode: multiply;
+  height: 100%;
+}
+.bottom-row {
+  background-image: url("../assets/images/careers.png");
+  background-color: rgba(0, 0, 0, 0.124);
+  background-blend-mode: multiply;
+  height: 500px;
+  background-size: cover;
+}
+
+.careers-button {
+  width: 25%;
+}

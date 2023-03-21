@@ -1,6 +1,7 @@
 import {
   Button,
   Container,
+  Dropdown,
   Image,
   Nav,
   Navbar as NavbarBs,
@@ -31,28 +32,40 @@ export default function NavBar() {
             About
           </Nav.Link>
         </Nav>
-        <Nav>
+        <Nav style={{ width: "250px" }}>
           {user ? (
             <span>
-              {" "}
               {!!user.photoURL && (
-                <Image
-                  style={{
-                    width: "3rem",
-                    height: "3rem",
-                    position: "relative",
-                  }}
-                  className="Image rounded-circle d-flex justify-contnet align-items-center"
-                  src={user.photoURL}
-                  alt=""
-                />
+                <Dropdown>
+                  <Dropdown.Toggle
+                    variant="primary"
+                    id="dropdown-basic"
+                    style={{ height: "75px" }}
+                  >
+                    <Image
+                      style={{
+                        width: "3rem",
+                        height: "3rem",
+                        position: "relative",
+                      }}
+                      className="Image rounded-circle d-flex justify-contnet align-items-center"
+                      src={user.photoURL}
+                      alt=""
+                    />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#sign-out">
+                      <Button onClick={signOut}>Sign Out</Button>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               )}
             </span>
           ) : (
-            <Button onClick={signInWithGoogle}>Sign In</Button>
+            <Button onClick={signInWithGoogle} style={{ marginRight: "10px" }}>
+              Sign In
+            </Button>
           )}
-
-          <Button onClick={signOut}>Sign Out</Button>
 
           {cartQuantity > 0 && (
             <Button

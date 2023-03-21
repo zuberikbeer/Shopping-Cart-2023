@@ -7,5 +7,41 @@
     "imgUrl": "/imgs/computer.jpg"
   },
   { "id": 3, "name": "Banana", "price": 1.05, "imgUrl": "/imgs/banana.jpg" },
-  { "id": 4, "name": "Car", "price": 14000, "imgUrl": "/imgs/car.jpg" }
+  { "id": 4, "name": "Car", "price": 14000, "imgUrl": "/imgs/car.jpg" },
+  {
+    "id": 5,
+    "name": "Appletech",
+    "price": 500,
+    "imgUrl": "/imgs/appletech.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Microsoft Products",
+    "price": 999.99,
+    "imgUrl": "/imgs/microsoftproducts.jpg"
+  },
+  {
+    "id": 7,
+    "name": "DJI Products",
+    "price": 1499.99,
+    "imgUrl": "/imgs/mavicpro.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Persimmon",
+    "price": 6.99,
+    "imgUrl": "/imgs/persimmon.jpg"
+  },
+  {
+    "id": 9,
+    "name": "T-shirt",
+    "price": 10.99,
+    "imgUrl": "/imgs/t-shirt.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Jeans",
+    "price": 39.99,
+    "imgUrl": "/imgs/jeans.jpg"
+  }
 ]
