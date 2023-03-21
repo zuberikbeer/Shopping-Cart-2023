@@ -22,7 +22,7 @@ export default function Home() {
                   src="/imgs/shopbag.jpg"
                   alt="First slide"
                 />
-                <Carousel.Caption>
+                <Carousel.Caption style={{ height: "50%" }}>
                   <h3>Welcome to Shopping Cart</h3>
                   <p>A store for your shopping needs</p>
                 </Carousel.Caption>
@@ -34,7 +34,7 @@ export default function Home() {
                   alt="Second slide"
                 />
 
-                <Carousel.Caption>
+                <Carousel.Caption style={{ height: "50%" }}>
                   <h3>Shop our new appearals section</h3>
                   <p>
                     We have created our own clothing line called "Shop&Cart"
@@ -48,7 +48,7 @@ export default function Home() {
                   alt="Third slide"
                 />
 
-                <Carousel.Caption>
+                <Carousel.Caption style={{ height: "50%" }}>
                   <h3>Groceries</h3>
                   <p>
                     {" "}

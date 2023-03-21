@@ -21,7 +21,10 @@ export default function NavBar() {
   return (
     <NavbarBs sticky="top" className="NavBar bg-white shadow-sm mb-3">
       <Container fluid>
-        <Nav className="me-auto justify-content-center">
+        <Nav
+          className="me-auto justify-content-center"
+          style={{ fontSize: "1.5rem" }}
+        >
           <Nav.Link to="/" as={NavLink}>
             Home
           </Nav.Link>
