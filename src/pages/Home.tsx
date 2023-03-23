@@ -71,7 +71,7 @@ export default function Home() {
           </Row>
 
           <Col
-            xs={5}
+            xs={8}
             sm={5}
             md={5}
             lg={4}
@@ -105,7 +105,7 @@ export default function Home() {
             </Card>
           </Col>
           <Col
-            xs={5}
+            xs={8}
             sm={5}
             md={5}
             lg={4}
@@ -139,7 +139,7 @@ export default function Home() {
             </Card>
           </Col>
           <Col
-            xs={5}
+            xs={8}
             sm={5}
             md={5}
             lg={4}
@@ -178,7 +178,7 @@ export default function Home() {
           src="/imgs/careers.jpg"
         >
           <Col
-            xs={5}
+            xs={12}
             sm={6}
             md={8}
             lg={10}

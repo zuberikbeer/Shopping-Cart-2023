@@ -65,7 +65,7 @@ export default function NavBar() {
               )}
             </span>
           ) : (
-            <Button onClick={signInWithGoogle} style={{ marginRight: "10px" }}>
+            <Button onClick={signInWithGoogle} style={{ marginRight: "40px" }}>
               Sign In
             </Button>
           )}

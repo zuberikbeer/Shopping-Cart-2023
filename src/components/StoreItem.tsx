@@ -30,10 +30,13 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
           <span className="fs-2">{name}</span>
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
         </Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
         <div className="mt-auto">
           {quantity === 0 ? (
             <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
-              {" "}
               + Add To Cart
             </Button>
           ) : (
