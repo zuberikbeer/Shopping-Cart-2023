@@ -37,3 +37,7 @@
 .careers-button {
   width: 25%;
 }
+
+div.card .d-flex {
+  justify-content: space-between;
+}

@@ -12,7 +12,8 @@ type CartItem = {
 type ShoppingCartContext = {
   openCart: () => void;
   closeCart: () => void;
-
+  clearCart: () => void;
+  handleCheckout: () => void;
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
@@ -83,6 +84,19 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const handleCheckout = () => {
+    const confirmed = window.confirm("Are you sure you want to checkout?");
+    if (confirmed) {
+      clearCart();
+      alert("Thank you for your purchase!");
+      closeCart();
+    }
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -92,6 +106,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         removeFromCart,
         openCart,
         closeCart,
+        clearCart,
+        handleCheckout,
         cartItems,
         cartQuantity,
       }}

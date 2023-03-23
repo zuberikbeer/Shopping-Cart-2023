@@ -81,19 +81,23 @@ export default function Home() {
             <Card style={{ width: "100%", maxWidth: "300px", height: "auto" }}>
               <Card.Img
                 variant="top"
-                src="/imgs/MicrosoftProducts.jpg"
+                src="/imgs/microsoftproducts.jpg"
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card.Body className="d-flex flex-column">
+              <Card.Body className="d-flex flex-column justify-content-space-between">
                 <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
                   Mircosoft Products
                 </Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Shop the Microsoft collection which includes: Surface Pro,
+                  Surface Headphones, Xbox Series X, and Microsoft 365
                 </Card.Text>
                 <Link to={"/store"}>
-                  <Button variant="primary" style={{ width: "100%" }}>
+                  <Button
+                    variant="primary"
+                    className="go-to-store"
+                    style={{ width: "100%" }}
+                  >
                     Go to store
                   </Button>
                 </Link>
@@ -114,16 +118,20 @@ export default function Home() {
                 src="/imgs/appletech.jpg"
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card.Body className="d-flex flex-column">
-                <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
+              <Card.Body className="d-flex flex-column justify-content-space-between">
+                <Card.Title className="d-flex  align-items-baseline mb-4">
                   Apple Products
                 </Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Browse through apple tech such as: iPhone 14 Pro, Apple Watch
+                  Series, IPad, MacBook Pro and AirPods
                 </Card.Text>
                 <Link to={"/store"}>
-                  <Button variant="primary" style={{ width: "100%" }}>
+                  <Button
+                    variant="primary"
+                    className="go-to-store"
+                    style={{ width: "100%" }}
+                  >
                     Go to store
                   </Button>
                 </Link>
@@ -141,19 +149,23 @@ export default function Home() {
             <Card style={{ width: "100%", maxWidth: "300px", height: "auto" }}>
               <Card.Img
                 variant="top"
-                src="/imgs/Mavicpro.jpg"
+                src="/imgs/mavicpro.jpg"
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card.Body className="d-flex flex-column">
+              <Card.Body className="d-flex flex-column justfiy-content-space-between">
                 <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
                   DJI Products
                 </Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Into Drones? Shop for DJI Mavic Pro, DJI Mini, DJI Avata and
+                  Osmo Mobile.
                 </Card.Text>
                 <Link to={"/store"}>
-                  <Button variant="primary" style={{ width: "100%" }}>
+                  <Button
+                    variant="primary"
+                    className="go-to-store"
+                    style={{ width: "100%" }}
+                  >
                     Go to store
                   </Button>
                 </Link>
