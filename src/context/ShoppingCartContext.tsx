@@ -28,6 +28,7 @@ export function useShoppingCart() {
   return useContext(ShoppingCartContext);
 }
 
+// ShoppingCartProvider component manages the shopping cart state and provides it to children components
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
@@ -48,32 +49,26 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   function increaseCartQuantity(id: number) {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
+      const item = currItems.find((item) => item.id === id);
+      if (item == null) {
         return [...currItems, { id, quantity: 1 }];
       } else {
-        return currItems.map((item) => {
-          if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1 };
-          } else {
-            return item;
-          }
-        });
+        return currItems.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
       }
     });
   }
 
   function decreaseCartQuantity(id: number) {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id)?.quantity === 1) {
+      const item = currItems.find((item) => item.id === id);
+      if (item?.quantity === 1) {
         return currItems.filter((item) => item.id !== id);
       } else {
-        return currItems.map((item) => {
-          if (item.id === id) {
-            return { ...item, quantity: item.quantity - 1 };
-          } else {
-            return item;
-          }
-        });
+        return currItems.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        );
       }
     });
   }

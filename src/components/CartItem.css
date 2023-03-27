@@ -1,0 +1,14 @@
+.item-image {
+  width: 125px;
+  height: 75px;
+  object-fit: cover;
+}
+
+.item-quantity {
+  font-size: 0.65rem;
+}
+
+.item-price,
+.item-total {
+  font-size: 0.75rem;
+}

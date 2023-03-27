@@ -1,0 +1,15 @@
+.cardImage {
+  object-fit: cover;
+}
+
+.cardBody {
+  padding: 1rem;
+}
+
+.cartActions {
+  gap: 0.5rem;
+}
+
+.cartActionButtons {
+  gap: 0.5rem;
+}

@@ -2,3 +2,46 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.NavBar {
+  font-size: 1.5rem;
+}
+
+.userDropdown {
+  width: 7rem;
+}
+
+.userDropdownToggle {
+  height: 75px;
+}
+
+.userImage {
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+}
+
+.signInButton {
+  margin-right: 40px;
+}
+
+.cartButtonContainer {
+  position: relative;
+  right: 1rem;
+}
+
+.cartButton {
+  width: 3.5rem;
+  height: 3.5rem;
+  position: relative;
+}
+
+.cartQuantity {
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-25%, 25%);
+}

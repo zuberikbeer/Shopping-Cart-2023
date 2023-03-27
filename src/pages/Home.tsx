@@ -3,6 +3,34 @@ import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
+interface ICarouselItem {
+  img: string;
+  alt: string;
+  title: string;
+  text: string;
+}
+
+const carouselItems: ICarouselItem[] = [
+  {
+    img: "/imgs/shopbag.jpg",
+    alt: "First slide",
+    title: "Welcome to Shopping Cart",
+    text: "A store for your shopping needs",
+  },
+  {
+    img: "/imgs/manshopping.jpg",
+    alt: "Second slide",
+    title: "Shop our new appearals section",
+    text: 'We have created our own clothing line called "Shop&Cart"',
+  },
+  {
+    img: "/imgs/shoppingcart.jpg",
+    alt: "Third slide",
+    title: "Groceries",
+    text: "Meal prep and find quality food products. All our groceries are sourced from local distributors within the U.S.",
+  },
+];
+
 export default function Home() {
   const [index, setIndex] = useState(0);
 
@@ -14,48 +42,21 @@ export default function Home() {
     <section>
       <Container fluid>
         <Row className="top-row justify-content-center">
-          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+          <Col>
             <Carousel activeIndex={index} onSelect={handleSelect}>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/imgs/shopbag.jpg"
-                  alt="First slide"
-                />
-                <Carousel.Caption style={{ height: "50%" }}>
-                  <h3>Welcome to Shopping Cart</h3>
-                  <p>A store for your shopping needs</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/imgs/manshopping.jpg"
-                  alt="Second slide"
-                />
-
-                <Carousel.Caption style={{ height: "50%" }}>
-                  <h3>Shop our new appearals section</h3>
-                  <p>
-                    We have created our own clothing line called "Shop&Cart"
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/imgs/shoppingcart.jpg"
-                  alt="Third slide"
-                />
-
-                <Carousel.Caption style={{ height: "50%" }}>
-                  <h3>Groceries</h3>
-                  <p>
-                    Meal prep and find quality food products. All our groceries
-                    are sourced from local distributors within the U.S.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
+              {carouselItems.map((item: ICarouselItem, i: number) => (
+                <Carousel.Item key={i}>
+                  <img
+                    className="d-block w-100"
+                    src={item.img}
+                    alt={item.alt}
+                  />
+                  <Carousel.Caption>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))}
             </Carousel>
           </Col>
         </Row>

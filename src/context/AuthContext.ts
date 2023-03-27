@@ -1,10 +1,17 @@
 import { User } from "firebase/auth";
 import { createContext } from "react";
-export interface AuthContextModel {
-  user: User | null; // null when not logged in
+
+// Define the structure of the authentication context
+export interface AuthContextType {
+  user: User | null; // Holds the authenticated user or null when not logged in
 }
-const defaultValue: AuthContextModel = {
+
+// Set default values for the authentication context
+const defaultValue: AuthContextType = {
   user: null,
 };
-const AuthContext = createContext(defaultValue);
+
+// Create the authentication context with the default values
+const AuthContext = createContext<AuthContextType>(defaultValue);
+
 export default AuthContext;

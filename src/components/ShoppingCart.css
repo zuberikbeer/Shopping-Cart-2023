@@ -1,0 +1,9 @@
+.cart-summary {
+  gap: 3;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5px;
+}

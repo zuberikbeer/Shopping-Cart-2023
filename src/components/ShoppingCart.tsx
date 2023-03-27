@@ -1,13 +1,21 @@
+import React, { useEffect, useState } from "react";
 import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import storeItems from "../data/items.json";
-import { useEffect, useState } from "react";
+import "./ShoppingCart.css";
 
 type ShoppingCartProps = {
   isOpen: boolean;
 };
+
+type CartItemData = {
+  id: number;
+  quantity: number;
+};
+
+const TAX_RATE = 0.08; // 8% sales tax rate.
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems, handleCheckout } = useShoppingCart();
@@ -22,7 +30,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     const item = storeItems.find((i) => i.id === cartItem.id);
     return total + (item?.price || 0) * cartItem.quantity;
   }, 0);
-  const TAX_RATE = 0.08; //8% sales tax rate.
+
   const salesTax = subtotal * TAX_RATE;
   const total = subtotal + salesTax;
 
@@ -35,39 +43,21 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       <Offcanvas.Body>
         {hasItems ? (
           <Stack gap={3}>
-            {cartItems.map((item) => (
+            {cartItems.map((item: CartItemData) => (
               <CartItem key={item.id} {...item} />
             ))}
-            <Stack gap={3}>
-              <div
-                className="bg-light border"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
+            <Stack gap={3} className="cart-summary">
+              <div className="bg-light border summary-item">
                 <span>Item Total</span>
-                <span style={{ marginRight: "5px" }}>
-                  {formatCurrency(
-                    cartItems.reduce((total, cartItem) => {
-                      const item = storeItems.find((i) => i.id === cartItem.id);
-                      return total + (item?.price || 0) * cartItem.quantity;
-                    }, 0)
-                  )}
-                </span>
+                <span>{formatCurrency(subtotal)}</span>
               </div>
-              <div
-                className="bg-light border"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
+              <div className="bg-light border summary-item">
                 <span>Shipping</span>
-                <span style={{ marginRight: "5px" }}>Free</span>
+                <span>Free</span>
               </div>
-              <div
-                className="bg-light border"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <span>Esitmated Sales Tax</span>
-                <span style={{ marginRight: "5px" }}>
-                  {formatCurrency(salesTax)}
-                </span>
+              <div className="bg-light border summary-item">
+                <span>Estimated Sales Tax</span>
+                <span>{formatCurrency(salesTax)}</span>
               </div>
             </Stack>
             <div className="ms-auto fw-bold fs-5">

@@ -41,3 +41,25 @@
 div.card .d-flex {
   justify-content: space-between;
 }
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.go-to-store {
+  width: 100%;
+}
+
+.carousel-caption {
+  height: 50%;
+}
+
+.shopping-cart-team {
+  margin-top: 20px;
+  color: white;
+}
+
+.shopping-cart-team-h5 {
+  color: white;
+}

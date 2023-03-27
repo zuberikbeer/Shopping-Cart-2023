@@ -1,6 +1,8 @@
+import React from "react";
 import { Button, Card, CardImg } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
+import styles from "./StoreItem.module.css";
 
 type StoreItemProps = {
   id: number;
@@ -17,15 +19,16 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
     removeFromCart,
   } = useShoppingCart();
   const quantity = getItemQuantity(id);
+
   return (
     <Card className="h-100">
       <CardImg
         variant="top"
         src={imgUrl}
         height="200px"
-        style={{ objectFit: "cover" }}
+        className={styles.cardImage}
       />
-      <Card.Body className="d-flex flex-column">
+      <Card.Body className={`d-flex flex-column ${styles.cardBody}`}>
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
           <span className="fs-2">{name}</span>
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
@@ -41,12 +44,10 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
             </Button>
           ) : (
             <div
-              className="d-flex align-items-center flex-column"
-              style={{ gap: ".5rem" }}
+              className={`d-flex align-items-center flex-column ${styles.cartActions}`}
             >
               <div
-                className="d-flex align-items-center justify-contnet-center"
-                style={{ gap: ".5rem" }}
+                className={`d-flex align-items-center justify-content-center ${styles.cartActionButtons}`}
               >
                 <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
                 <div>

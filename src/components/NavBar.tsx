@@ -21,10 +21,7 @@ export default function NavBar() {
   return (
     <NavbarBs sticky="top" className="NavBar bg-white shadow-sm mb-3">
       <Container fluid>
-        <Nav
-          className="me-auto justify-content-center"
-          style={{ fontSize: "1.5rem" }}
-        >
+        <Nav className="me-auto justify-content-center navLinks">
           <Nav.Link to="/" as={NavLink}>
             Home
           </Nav.Link>
@@ -35,23 +32,18 @@ export default function NavBar() {
             About
           </Nav.Link>
         </Nav>
-        <Nav className=" align-items-center">
+        <Nav className="align-items-center">
           {user ? (
             <span>
               {!!user.photoURL && (
-                <Dropdown style={{ width: "7rem" }}>
+                <Dropdown className="userDropdown">
                   <Dropdown.Toggle
                     variant="primary"
                     id="dropdown-basic"
-                    style={{ height: "75px" }}
+                    className="userDropdownToggle"
                   >
                     <Image
-                      style={{
-                        width: "3rem",
-                        height: "3rem",
-                        position: "relative",
-                      }}
-                      className="Image rounded-circle d-flex justify-contnet align-items-center"
+                      className="userImage rounded-circle d-flex justify-contnet align-items-center"
                       src={user.photoURL}
                       alt=""
                     />
@@ -65,21 +57,16 @@ export default function NavBar() {
               )}
             </span>
           ) : (
-            <Button onClick={signInWithGoogle} style={{ marginRight: "40px" }}>
+            <Button onClick={signInWithGoogle} className="signInButton">
               Sign In
             </Button>
           )}
-          <div style={{ position: "relative", right: "1rem" }}>
+          <div className="cartButtonContainer">
             {cartQuantity > 0 && (
               <Button
                 onClick={openCart}
-                style={{
-                  width: "3.5rem",
-                  height: "3.5rem",
-                  position: "relative",
-                }}
                 variant="outline-primary"
-                className="rounded-circle"
+                className="cartButton rounded-circle"
               >
                 <svg
                   viewBox="0 0 200 200"
@@ -91,18 +78,7 @@ export default function NavBar() {
                     fill="black"
                   />
                 </svg>
-                <div
-                  className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-                  style={{
-                    color: "white",
-                    width: "1.5rem",
-                    height: "1.5rem",
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    transform: "translate (-25%, 25%)",
-                  }}
-                >
+                <div className="cartQuantity rounded-circle bg-danger d-flex justify-content-center align-items-center">
                   {cartQuantity}
                 </div>
               </Button>

@@ -2,6 +2,8 @@ import { Button, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import storeItems from "../data/items.json";
 import { formatCurrency } from "../utilities/formatCurrency";
+import "./CartItem.css";
+
 type CartItemProps = {
   id: number;
   quantity: number;
@@ -14,25 +16,17 @@ export function CartItem({ id, quantity }: CartItemProps) {
 
   return (
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      <img
-        src={item.imgUrl}
-        style={{ width: "125 px", height: "75px", objectFit: "cover" }}
-        alt=""
-      />
-      <div className="me-auto">
+      <img src={item.imgUrl} className="item-image" alt="" />
+      <div className="item-details me-auto">
         <div>
           {item.name}
           {quantity > 1 && (
-            <span className="text-muted" style={{ fontSize: ".65rem" }}>
-              x{quantity}
-            </span>
+            <span className="item-quantity text-muted">x{quantity}</span>
           )}
         </div>
       </div>
-      <div className="text-muted" style={{ fontSize: ".75rem" }}>
-        {formatCurrency(item.price)}
-      </div>
-      <div> {formatCurrency(item.price * quantity)}</div>
+      <div className="item-price text-muted">{formatCurrency(item.price)}</div>
+      <div className="item-total">{formatCurrency(item.price * quantity)}</div>
       <Button
         variant="outline-danger"
         size="sm"
