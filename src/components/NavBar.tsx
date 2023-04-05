@@ -6,7 +6,7 @@ import {
   Nav,
   Navbar as NavbarBs,
 } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
@@ -14,9 +14,25 @@ import { useContext } from "react";
 import "./NavBar.css";
 
 export default function NavBar() {
+  const { user, account } = useContext(AuthContext);
+
   const { openCart, cartQuantity } = useShoppingCart();
 
-  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const redirectToLogin = () => {
+    navigate("/login");
+  };
+
+  const renderUserSection = () => {
+    return (
+      <>
+        <Button onClick={redirectToLogin} className="signInButton">
+          Sign In
+        </Button>
+      </>
+    );
+  };
 
   return (
     <NavbarBs sticky="top" className="NavBar bg-white shadow-sm mb-3">
@@ -33,36 +49,9 @@ export default function NavBar() {
           </Nav.Link>
         </Nav>
         <Nav className="align-items-center">
-          {user ? (
-            <span>
-              {!!user.photoURL && (
-                <Dropdown className="userDropdown">
-                  <Dropdown.Toggle
-                    variant="primary"
-                    id="dropdown-basic"
-                    className="userDropdownToggle"
-                  >
-                    <Image
-                      className="userImage rounded-circle d-flex justify-contnet align-items-center"
-                      src={user.photoURL}
-                      alt=""
-                    />
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#sign-out">
-                      <Button onClick={signOut}>Sign Out</Button>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-            </span>
-          ) : (
-            <Button onClick={signInWithGoogle} className="signInButton">
-              Sign In
-            </Button>
-          )}
-          <div className="cartButtonContainer">
-            {cartQuantity > 0 && (
+          {renderUserSection()}
+          {cartQuantity > 0 && (
+            <div className="cartButtonContainer">
               <Button
                 onClick={openCart}
                 variant="outline-primary"
@@ -82,8 +71,8 @@ export default function NavBar() {
                   {cartQuantity}
                 </div>
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </Nav>
       </Container>
     </NavbarBs>

@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./context/AuthContextProvider";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,9 +13,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
+      <ShoppingCartProvider>
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
+      </ShoppingCartProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

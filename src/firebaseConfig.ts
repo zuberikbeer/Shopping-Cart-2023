@@ -13,7 +13,6 @@ const firebaseConfig = {
 //Initialize FireBase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-
 const authoProvider = new GoogleAuthProvider();
 
 //Sign-In and Sign-Out Functions

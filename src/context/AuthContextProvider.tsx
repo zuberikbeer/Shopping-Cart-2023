@@ -1,23 +1,46 @@
 import { ReactNode, useEffect, useState } from "react";
-import { User } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import AuthContext, { AuthContextType } from "./AuthContext";
+import Account from "../models/Account";
+import { createNewAccount, getUserData } from "../services/AccountApiService";
+import { User } from "firebase/auth";
 
 // AuthContextProvider component manages user authentication state and provides it to children components
 function AuthContextProvider({ children }: { children: ReactNode }) {
+  const [account, setAccount] = useState<Account | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Register auth state listener on component mount
-    const unsubscribe = auth.onAuthStateChanged((newUser) => {
-      setUser(newUser);
-    });
+    return auth.onAuthStateChanged((newUser) => {
+      if (newUser) {
+        setUser(newUser);
+        getUserData(newUser.uid).then((res) => {
+          if (res) {
+            setAccount(res);
+          } else {
+            createNewAccount({
+              profilePic: newUser.photoURL || "",
+              userName: newUser.displayName || "",
+              email: newUser.email || "",
+              uid: newUser.uid,
+              initalSetUp: true,
+            }).then((response) => setAccount(response));
+          }
 
-    // Unregister auth state listener on component unmount
-    return unsubscribe;
+          console.log(res);
+        });
+      } else {
+        setUser(null);
+        setAccount(null);
+      }
+    });
   }, []);
 
-  const value: AuthContextType = { user };
+  const value: AuthContextType = {
+    account,
+    user,
+    setAccount,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
