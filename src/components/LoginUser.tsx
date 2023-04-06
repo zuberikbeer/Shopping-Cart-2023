@@ -3,7 +3,7 @@ import LoginData from "../models/LoginData";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
-import { signIn } from "../services/AccountApiService";
+import { login } from "../services/auth"; // Import the login function from auth.ts
 
 const LoginUser = () => {
   const { user } = useContext(AuthContext);
@@ -31,11 +31,11 @@ const LoginUser = () => {
     event.preventDefault();
 
     try {
-      const account = await signIn({
-        loginEmailOrUsername: loginForm.loginEmailOrUsername,
-        loginPassword: loginForm.loginPassword,
-      });
-      console.log("Login successful:", account);
+      const token = await login(
+        loginForm.loginEmailOrUsername,
+        loginForm.loginPassword
+      ); // Call the login function
+      console.log("Login successful:", token);
     } catch (error) {
       console.error("Login error:", error);
       alert("Login failed");

@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
-import { signUp } from "../services/AccountApiService";
+
+import { register } from "../services/auth"; // Import the register function from auth.ts
 import { useState } from "react";
-import Account from "../models/Account";
 
 interface FormData {
   email: string;
@@ -32,16 +32,8 @@ const SignUpUser = () => {
       return;
     }
 
-    const newAccount: Account = {
-      uid: "", // Set an appropriate value for uid
-      email: formData.email,
-      password: formData.password,
-      userName: formData.userName,
-      initalSetUp: true, // Set an appropriate value for initalSetUp
-    };
-
     try {
-      await signUp(newAccount);
+      await register(formData.email, formData.password); // Call the register function
       alert("Registration successful");
     } catch (error) {
       alert("Registration failed");
