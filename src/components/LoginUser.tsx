@@ -18,6 +18,15 @@ const LoginUser = () => {
     setLoginForm((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      // user is now signed in with Google
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -68,7 +77,7 @@ const LoginUser = () => {
           <Button onClick={signOut}>Sign Out</Button>
         </div>
       ) : (
-        <Button onClick={signInWithGoogle}>Sign In With Google</Button>
+        <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
       )}
     </div>
   );
