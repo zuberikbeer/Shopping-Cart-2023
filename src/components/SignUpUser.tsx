@@ -1,7 +1,8 @@
-import { Button, Form } from "react-bootstrap";
-
-import { register } from "../services/auth"; // Import the register function from auth.ts
+import { Button, Form, Modal } from "react-bootstrap";
+import { signUp } from "../services/AccountApiService";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Account from "../models/Account";
 
 interface FormData {
   email: string;
@@ -11,6 +12,14 @@ interface FormData {
 }
 
 const SignUpUser = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const redirectToLogin = () => {
+    setShowModal(false);
+    navigate("/login");
+  };
+
   const [formData, setFormData] = useState<FormData>({
     userName: "",
     email: "",
@@ -32,9 +41,17 @@ const SignUpUser = () => {
       return;
     }
 
+    const newAccount: Account = {
+      profilePic: "",
+      email: formData.email,
+      password: formData.password,
+      userName: formData.userName,
+      initalSetUp: true, // Set an appropriate value for initalSetUp
+    };
+
     try {
-      await register(formData.email, formData.password); // Call the register function
-      alert("Registration successful");
+      await signUp(newAccount);
+      setShowModal(true);
     } catch (error) {
       alert("Registration failed");
     }
@@ -91,6 +108,17 @@ const SignUpUser = () => {
           Register
         </Button>
       </Form>
+      <Modal show={showModal} onHide={redirectToLogin}>
+        <Modal.Header closeButton>
+          <Modal.Title>Registration</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Registration successful</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={redirectToLogin}>
+            Go to Login
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

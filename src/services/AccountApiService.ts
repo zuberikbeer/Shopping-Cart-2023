@@ -24,7 +24,7 @@ export const createNewAccount = (account: Account): Promise<Account> => {
 // Send a signup request to the backend
 export const signUp = async (account: Account): Promise<void> => {
   try {
-    await axios.post(`${baseUrl}/api/auth/register`, account);
+    await axios.post(`${baseUrl}/account/addAccount`, account);
   } catch (error) {
     console.error("Error during sign-up:", error);
   }
@@ -33,7 +33,7 @@ export const signUp = async (account: Account): Promise<void> => {
 // Send a sign-in request to the backend
 export const signIn = async (loginData: LoginData): Promise<Account> => {
   try {
-    const response = await axios.post(`${baseUrl}/api/auth/login`, loginData);
+    const response = await axios.post(`${baseUrl}/account/login`, loginData);
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -45,10 +45,10 @@ export const signIn = async (loginData: LoginData): Promise<Account> => {
   }
 };
 
-// deletes user from database
-export const deleteAccount = (id: string): Promise<Account> => {
-  return axios
-    .delete(`${baseUrl}/account/${id}`)
-    .then((res) => res.data)
-    .catch((err) => console.log(err));
-};
+//* deletes user from database
+// export const deleteAccount = (id: string): Promise<Account> => {
+//   return axios
+//     .delete(`${baseUrl}/account/${id}`)
+//     .then((res) => res.data)
+//     .catch((err) => console.log(err));
+// };

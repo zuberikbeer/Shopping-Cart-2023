@@ -1,9 +1,18 @@
 import { Button, Form } from "react-bootstrap";
 import LoginData from "../models/LoginData";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../context/AuthContext";
 import { signIn } from "../services/AccountApiService";
+import { useNavigate } from "react-router-dom";
 
 const LoginUser = () => {
+  const { user, account, setAccount } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const redirectToHome = () => {
+    navigate("/home");
+  };
+
   const [loginForm, setLoginForm] = useState<LoginData>({
     loginEmailOrUsername: "",
     loginPassword: "",
@@ -23,6 +32,10 @@ const LoginUser = () => {
         loginPassword: loginForm.loginPassword,
       });
       console.log("Login successful:", account);
+      //Update the account in the AuthContext
+      setAccount(account);
+
+      redirectToHome();
     } catch (error) {
       console.error("Login error:", error);
       alert("Login failed");

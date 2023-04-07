@@ -22,7 +22,6 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
               profilePic: newUser.photoURL || "",
               userName: newUser.displayName || "",
               email: newUser.email || "",
-              uid: newUser.uid,
               initalSetUp: true,
             }).then((response) => setAccount(response));
           }
