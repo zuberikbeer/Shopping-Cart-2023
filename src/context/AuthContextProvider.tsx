@@ -1,44 +1,52 @@
 import { ReactNode, useEffect, useState } from "react";
-import { auth } from "../firebaseConfig";
 import AuthContext, { AuthContextType } from "./AuthContext";
 import Account from "../models/Account";
-import { createNewAccount, getUserData } from "../services/AccountApiService";
-import { User } from "firebase/auth";
+import {
+  createNewAccount,
+  getUserData,
+  signIn,
+} from "../services/AccountApiService";
 
 // AuthContextProvider component manages user authentication state and provides it to children components
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [account, setAccount] = useState<Account | null>(null);
-  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    return auth.onAuthStateChanged((newUser) => {
-      if (newUser) {
-        setUser(newUser);
-        getUserData(newUser.uid).then((res) => {
-          if (res) {
-            setAccount(res);
-          } else {
-            createNewAccount({
-              profilePic: newUser.photoURL || "",
-              userName: newUser.displayName || "",
-              email: newUser.email || "",
-              initalSetUp: true,
-            }).then((response) => setAccount(response));
-          }
-
-          console.log(res);
-        });
-      } else {
-        setUser(null);
-        setAccount(null);
-      }
-    });
+    const storedAccount = localStorage.getItem("account");
+    if (storedAccount) {
+      setAccount(JSON.parse(storedAccount));
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("account", JSON.stringify(account));
+  }, [account]);
+
+  const login = async (email: string, password: string) => {
+    try {
+      const accountToLogin: Account = {
+        email,
+        password,
+      };
+      const loggedInAccount = await signIn(accountToLogin);
+      console.log("Logged in account:", loggedInAccount);
+      setAccount(loggedInAccount);
+      localStorage.setItem("account", JSON.stringify(loggedInAccount));
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
+  const logout = () => {
+    setAccount(null);
+    localStorage.removeItem("account");
+  };
 
   const value: AuthContextType = {
     account,
-    user,
     setAccount,
+    login,
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

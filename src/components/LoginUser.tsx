@@ -1,21 +1,20 @@
 import { Button, Form } from "react-bootstrap";
-import LoginData from "../models/LoginData";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
-import { signIn } from "../services/AccountApiService";
 import { useNavigate } from "react-router-dom";
+import Account from "../models/Account";
 
 const LoginUser = () => {
-  const { user, account, setAccount } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const redirectToHome = () => {
     navigate("/home");
   };
 
-  const [loginForm, setLoginForm] = useState<LoginData>({
-    loginEmailOrUsername: "",
-    loginPassword: "",
+  const [loginForm, setLoginForm] = useState<Account>({
+    email: "",
+    password: "",
   });
 
   const handleLoginChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,14 +25,10 @@ const LoginUser = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    console.log("Submitting login form", loginForm);
     try {
-      const account = await signIn({
-        loginEmailOrUsername: loginForm.loginEmailOrUsername,
-        loginPassword: loginForm.loginPassword,
-      });
-      console.log("Login successful:", account);
-      //Update the account in the AuthContext
-      setAccount(account);
+      await login(loginForm.email, loginForm.password);
+      console.log("Login successful");
 
       redirectToHome();
     } catch (error) {
@@ -45,13 +40,13 @@ const LoginUser = () => {
   return (
     <div className="loginUser">
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicLoginEmailOrUserName">
-          <Form.Label>Email or Username</Form.Label>
+        <Form.Group controlId="formBasicLoginEmail">
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter email or username"
-            name="loginEmailOrUsername"
-            value={loginForm.loginEmailOrUsername}
+            placeholder="Enter email"
+            name="email"
+            value={loginForm.email}
             onChange={handleLoginChange}
           />
         </Form.Group>
@@ -61,8 +56,8 @@ const LoginUser = () => {
           <Form.Control
             type="password"
             placeholder="Password"
-            name="loginPassword"
-            value={loginForm.loginPassword}
+            name="password"
+            value={loginForm.password}
             onChange={handleLoginChange}
           />
         </Form.Group>

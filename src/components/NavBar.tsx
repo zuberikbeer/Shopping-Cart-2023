@@ -12,7 +12,8 @@ import { useContext } from "react";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const { account } = useContext(AuthContext);
+  const { account, logout } = useContext(AuthContext);
+  console.log("Account in NavBar:", account);
   const { openCart, cartQuantity } = useShoppingCart();
 
   const navigate = useNavigate();
@@ -40,13 +41,13 @@ export default function NavBar() {
             <Nav className="align-items-center">
               <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  {account.userName}
+                  {account.email}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">
-                    <Button onClick={redirectToLogin}>Sign Out</Button>
+                    <Button onClick={logout}>Sign Out</Button>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

@@ -1,6 +1,5 @@
 import axios, { AxiosError } from "axios";
 import Account from "../models/Account";
-import LoginData from "../models/LoginData";
 
 //stores base URL
 const baseUrl: string = process.env.REACT_APP_API_BASE_URL || "";
@@ -31,20 +30,30 @@ export const signUp = async (account: Account): Promise<void> => {
 };
 
 // Send a sign-in request to the backend
-export const signIn = async (loginData: LoginData): Promise<Account> => {
+export const signIn = async (account: Account): Promise<Account> => {
   try {
-    const response = await axios.post(`${baseUrl}/account/login`, loginData);
+    const response = await axios.post(`${baseUrl}/account/login`, account);
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       console.error("Error during sign-in:", error.response);
+
+      // Check if the error response contains a message
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        throw new Error(error.response.data.message);
+      } else {
+        throw new Error("Error during sign-in");
+      }
     } else {
       console.error("Error during sign-in:", error);
+      throw new Error("Invalid email or password");
     }
-    throw new Error("Invalid email/username or password");
   }
 };
-
 //* deletes user from database
 // export const deleteAccount = (id: string): Promise<Account> => {
 //   return axios
