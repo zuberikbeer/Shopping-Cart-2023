@@ -69,6 +69,30 @@ export default function About() {
         <Row>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <p className="about-p">
+              <h6>Strech Goals</h6> First, I want to intergrate a shopping cart
+              API's to the store page so the user has a wider variety of items
+              to choose from and add to there cart. Second, I intend to update
+              sign-in functionality by only showing the Home page if the user is
+              not signed into there account.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <p className="about-p">
+              <h6>Problems to Solve</h6> This is a MERN stack application using
+              mongoDB as the database to store user account information. I
+              attempted to create a register fucntion if the client does not
+              want to use google authentaction and rather create an account with
+              a email, username, password. This leads to REST and CRUD issues
+              that I have yet to solve when communicating to the backend of this
+              appliaction.
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <p className="about-p">
               Still here? Connect with me on LinkedIn. Share resourses, I am
               happy for feedback.
             </p>

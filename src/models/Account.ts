@@ -1,9 +1,7 @@
 export default interface Account {
   _id?: string;
-  profilePic?: string;
-  userName?: string;
-  email: string;
-  password: string;
-  uid?: string;
-  initalSetUp?: true;
+  profilePic: string;
+  userName: string;
+  uid: string;
+  initalSetUp: boolean;
 }

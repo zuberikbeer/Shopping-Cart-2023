@@ -7,10 +7,17 @@
   justify-content: flex-end;
 }
 
+.dropdown-box {
+  margin-right: 40px;
+}
+
 .userDropdown {
   width: 7rem;
 }
-
+.dropdownMenu .dropdown-item:hover {
+  background-color: #007bff;
+  color: #fff;
+}
 .userDropdownToggle {
   height: 75px;
 }
@@ -21,8 +28,9 @@
   position: relative;
 }
 
-.signInButton {
-  margin-right: 40px;
+.sign-in-button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .cartButtonContainer {

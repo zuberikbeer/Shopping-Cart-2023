@@ -1,18 +1,16 @@
+import { User } from "firebase/auth";
 import { createContext } from "react";
-
 import Account from "../models/Account";
-// Define the structure of the authentication context
+
 export interface AuthContextType {
+  user: User | null;
   account: Account | null;
   setAccount: (account: Account) => void;
-  login: (email: string, password: string) => void;
-  logout: () => void;
 }
 // Set default values for the authentication context
 const defaultValue: AuthContextType = {
+  user: null,
   account: null,
-  login: () => {},
-  logout: () => {},
   setAccount: () => {},
 };
 
